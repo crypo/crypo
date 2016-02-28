@@ -16,7 +16,7 @@ $ npm install crypo
 - AER256
 - ARMON64
 
-## Usage
+## Usage example
 ```javascript
 const crypo = require('crypo');
 
