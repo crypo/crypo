@@ -1,6 +1,6 @@
 {
   "name": "crypo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "lib/Crypo.js",
   "repository": "crypo/crypo",
   "files": [
