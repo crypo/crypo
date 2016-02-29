@@ -3,22 +3,7 @@
  */
 
 const completeEscape = require('completeEscape');
-
-function decToHex(oNum) {
-  var hexChars = new Array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'),
-    outP = '',
-    d;
-
-  for (var x = oNum; x > 0; x = (x - (x % 16)) / 16) {
-    outP = hexChars[x % 16] + '' + outP;
-  }
-
-  if (outP.length % 2) {
-    outP = '0' + outP;
-  }
-
-  return outP;
-}
+const decodeToHex = require('decodeToHex');
 
 exports.encode = function(oString, oKey) {
   if (oKey.length < 3) {
@@ -37,13 +22,17 @@ exports.encode = function(oString, oKey) {
 
   for (var x = 0, y = ''; x < oString.length; x += Math.round(oKey.length / 2), y = ', ') {
     var theNum = parseInt('0x' + completeEscape(oString.substr(x, Math.round(oKey.length / 2))));
+
     if (isNaN(theNum)) {
-      window.alert('Encryption Failed!');
+      console.log('Encryption Failed!');
+
       return oString;
     }
+
     for (var z = 0; z < oKey.length; z++) {
       eval('theNum ' + oOp[z % 3] + ' ' + oKeyNum[z] + ';');
     }
+    
     oOutStr += y + theNum;
   }
 
@@ -71,7 +60,7 @@ exports.decode = function(oString, oKey) {
     for (var z = oKey.length - 1; z >= 0; z--) {
       eval('oOutStr[x] ' + oOp[z % 3] + ' ' + oKeyNum[z] + ';');
     }
-    oOutStr[x] = decToHex(Math.round(oOutStr[x]));
+    oOutStr[x] = decodeToHex(Math.round(oOutStr[x]));
   }
 
   oOutStr = oOutStr.join('');

@@ -23,21 +23,25 @@ const Methods = {
   ARMON64: require('ARMON64'),
 };
 
-exports.encode = (method, str) => {
+exports.encode = function(method, str) {
   if (!Methods[method]) {
     console.log(`${method} is currently not supported.`);
 
     return str;
+  } else if (typeof Methods[method] === 'object') {
+    return Methods[method].encode(str, arguments[2]);
   }
 
   return Encode(Methods[method], str);
 };
 
-exports.decode = (method, str) => {
+exports.decode = function(method, str) {
   if (!Methods[method]) {
     console.log(`${method} is currently not supported.`);
 
     return str;
+  } else if (typeof Methods[method] === 'object') {
+    return Methods[method].decode(str, arguments[2])
   }
 
   return Decode(Methods[method], str);

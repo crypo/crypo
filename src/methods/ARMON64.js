@@ -2,20 +2,8 @@
  * @providesModule ARMON64
  */
 
- const completeEscape = require('completeEscape');
-
- function decToHex(oNum) {
-  var hexChars = new Array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'),
-  outP = '',
-  d;
-  for (var x = oNum; x > 0; x = (x - (x % 16)) / 16) {
-    outP = hexChars[x % 16] + '' + outP;
-  }
-  if (outP.length % 2) {
-    outP = '0' + outP;
-  }
-  return outP;
-}
+const completeEscape = require('completeEscape');
+const decodeToHex = require('decodeToHex');
 
 exports.encode = function(oString, oKey) {
   if (oKey.length < 3) {
@@ -74,7 +62,7 @@ exports.decode = function(oString, oKey) {
       eval('oOutStr[x] ' + oOp[z % 4] + ' ' + oKeyNum[z] + ';');
     }
 
-    oOutStr[x] = decToHex(Math.round(oOutStr[x]));
+    oOutStr[x] = decodeToHex(Math.round(oOutStr[x]));
   }
 
   oOutStr = oOutStr.join('');
