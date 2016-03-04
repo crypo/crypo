@@ -2,7 +2,7 @@
   "name": "crypo",
   "version": "0.1.4",
   "main": "lib/Crypo.js",
-  "repository": "crypo/crypo",
+  "repository": "iiegor/crypo",
   "files": [
     "dist",
     "lib"
