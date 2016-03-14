@@ -1,4 +1,4 @@
-# Crypo
+# Crypo [![npm version](https://badge.fury.io/js/crypo.svg)](https://www.npmjs.com/package/crypo)
 
 Crypo is a library that offers a wide range of data encryption and decryption methods.
 
